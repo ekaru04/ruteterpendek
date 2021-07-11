@@ -160,10 +160,27 @@
                         <tr>
                           <th class="text-center">Nomor</th>
                           <th class="text-center">Nama Kecamatan</th>
-                          <th class="text-center">Aksi</th>
+                          <th colspan="2" class="text-center">Aksi</th>
                           <th class="text-center">Kode Pos</th>
                         </tr>
-                        <?php
+
+                        <?php 
+                        include "connection.php";
+                        $no=1;
+                        $ambildata = mysqli_query($conn, "select * from kecamatan");
+                        while ($tampil = mysqli_fetch_array($ambildata)){
+                          echo "
+                          <tr>
+                            <td>$no</td>
+                            <td>$tampil[nama_kecamatan]</td>
+                            <td><a class='btn btn-success' href='editkec.php?kode=$tampil[id_kecamatan]'>Edit</a></td>
+                            <td><a class='btn btn-danger' href='?kode=$tampil[id_kecamatan]'>Hapus</a></td>
+                          </tr>";
+                          $no++;
+                        }
+                        ?>
+
+                       <!-- <?php
                             include 'connection.php';          
                             $no = 1;
                             $data =  mysqli_query($conn, "select * from kecamatan");
@@ -179,11 +196,20 @@
                             >HAPUS</a>
                             </td>
                         </tr>
-			<?php }	?>
+			<?php }	?> -->
                         
 
                      </table>
-                      <!-- <canvas id="revenue-chart-canvas" height="300" style="height: 300px;"></canvas> -->
+
+                     <?php  
+                     if(isset($_GET['kode'])){
+                      mysqli_query($conn, "delete from kecamatan where id_kecamatan='$_GET[kode]'");
+                      echo "<meta http-equiv=refresh content=0.1;URL='kelolaKec.php'>";
+
+                      //echo "Data telah terhapus";
+                     }
+                     ?>
+
                    </div>
                    
 

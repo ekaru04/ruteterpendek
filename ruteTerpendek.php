@@ -1,5 +1,6 @@
 <?php
   include ('connection.php');
+  require("dijkstra/RunTest.php");
 ?>
 <!DOCTYPE html>
 <html>
@@ -93,7 +94,7 @@
               </li>
             </ul>
           </li>
-          
+
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon far fa-plus-square"></i>
@@ -109,7 +110,7 @@
                   <p>Login</p>
                 </a>
               </li>
-              
+
           </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -127,7 +128,7 @@
             <h1 class="m-0 text-dark">Rute Terpendek</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
-            
+
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -139,53 +140,92 @@
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row">
-          <div class="col-lg-6">
-          <h3 class="m-0 text-dark">Kecamatan Asal</h3>
-            <select name="kecamatan">
-            <?php
-                        
-              $no = 1;
-              $data =  mysqli_query($conn, "select * from kecamatan");
-              while($d = mysqli_fetch_assoc($data))
-              {
-                echo '<option value="'.$d['nama_kecamatan'].'">'.$d['nama_kecamatan'].'</option>';
-              }
-            ?>
-            </select>
-          <!-- <div class="dropdown">
-            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
-              Kecamatan
-            </button>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
+
+          <div class="col-xl-8 col-lg-7">
+            <div class="card shadow mb-4">
+              <!-- Card Header - Dropdown -->
+              <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Peta Graph</h6>
               </div>
-          </div> -->
+              <!-- Card Body -->
+              <div class="card-body">
+                <img class="img-fluid" src="img/peta_graph_bondowoso.png" alt="peta_graph_bondowoso">
+              </div>
+            </div>
           </div>
-              
-          <div class="col-lg-6">
-          <h3 class="m-0 text-dark">Kecamatan Tujuan</h3>
-          <select name="kecamatan">
+
+          <div class="col-xl-4 col-lg-5">
+            <div class="card shadow mb-4">
+              <!-- Card Header - Dropdown -->
+              <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Pencarian Rute</h6>
+              </div>
+              <!-- Card Body -->
+              <div class="card-body">
+               <form action="ruteTerpendek.php" method="get">
+                 <div class="mb-3">
+                   <label for="dari">Dari</label>
+                   <select name="dari" class="form-control" id="dari">
+                     <?php
+                     $no = 1;
+                     $data =  mysqli_query($conn, "select * from kecamatan");
+                     while($d = mysqli_fetch_assoc($data))
+                     {
+                       echo '<option value="'.$d['nama_kecamatan'].'">'.$d['nama_kecamatan'].'</option>';
+                     }
+                     ?>
+                   </select>
+                 </div>
+                 <div class="mb-3">
+                   <label for="ke">Ke</label>
+                   <select name="ke" class="form-control" id="ke">
+                     <?php
+                     $no = 1;
+                     $data =  mysqli_query($conn, "select * from kecamatan");
+                     while($d = mysqli_fetch_assoc($data))
+                     {
+                       echo '<option value="'.$d['nama_kecamatan'].'">'.$d['nama_kecamatan'].'</option>';
+                     }
+                     ?>
+                   </select>
+                 </div>
+                 <button type="submit" class="btn btn-primary">Cari</button>
+               </form>
+              </div>
+            </div>
             <?php
-              include 'connection.php';          
-              $no = 1;
-              $data =  mysqli_query($conn, "select * from kecamatan");
-              while($d = mysqli_fetch_assoc($data))
-              {
-                echo '<option value="'.$d['nama_kecamatan'].'">'.$d['nama_kecamatan'].'</option>';
-              }
+            if (isset($_GET['dari'],$_GET['ke'])) {
+              $dari = $_GET['dari'];
+              $ke = $_GET['ke'];
+
+              $path = runTest($dari,$ke);
+              ?>
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Hasil Pencarian</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                  <p>Rute terpendek dari <?php echo $dari; ?> ke <?php echo $ke; ?> adalah :</p>
+                  <?php
+                  if ($dari == $ke) {
+                    echo $dari;
+                  }else {
+                    //var_dump($path);
+                    echo implode(' -> ', $path);
+                  }
+                  ?>
+                </div>
+              </div>
+              <?php
+            }
             ?>
-            </select>
+
           </div>
+
         </div>
 
-        <div class="row">
-        <div>
-              <button type="submit" class="btn btn-primary" data-toggle="modal" data-target=".simpan-modal-sm"><i class="fa fa-save"></i>Cari Jarak</button>
-          </div>
-        </div>
-        
         <!-- /.row (main row) -->
       </div><!-- /.container-fluid -->
     </section>
