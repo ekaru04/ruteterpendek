@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Rute Terpendek Greedy</title>
+  <title>Rute Terpendek Kabupaten Bondowoso</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -59,7 +59,7 @@
           <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">TES</a>
+          <a href="#" class="d-block">Welcome admin</a>
         </div>
       </div>
 
@@ -92,7 +92,7 @@
               <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Keluar</p>
+                  <p>Logout</p>
                 </a>
               </li>
             </ul>

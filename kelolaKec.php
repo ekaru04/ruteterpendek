@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Rute Terpendek Greedy</title>
+  <title>Rute Terpendek Kabupaten Bondowoso</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -29,6 +29,12 @@
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
+<?php
+  session_start();
+  if($_SESSION['status'] != "login"){
+    header("location:kelolaKec.php");
+  }
+?>
 <div class="wrapper">
 
   <!-- Navbar -->
@@ -59,7 +65,7 @@
           <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">TES</a>
+          <a href="#" class="d-block">Welcome <?php echo $_SESSION['username'];?></a>
         </div>
       </div>
 
@@ -90,9 +96,9 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./tambahjarak.php" class="nav-link">
+                <a href="./logout.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Keluar</p>
+                  <p>Logout</p>
                 </a>
               </li>
             </ul>
@@ -148,7 +154,7 @@
             <div class="card-header">
                 <h3 class="card-title">
                   <i class="fas fa-chart-pie mr-1"></i>
-                  Kelola Data
+                  Data Kecamatan
                 </h3>
               </div>
             <div class="card-body">
@@ -180,23 +186,7 @@
                         }
                         ?>
 
-                       <!-- <?php
-                            include 'connection.php';          
-                            $no = 1;
-                            $data =  mysqli_query($conn, "select * from kecamatan");
-                            while($d = mysqli_fetch_assoc($data)){
-                        ?>
-                        <tr>
-                            <td><?php echo $no++; ?></td>
-                            <td><?php echo $d['nama_kecamatan']; ?></td>
-                            <td><a class="btn btn-success" href="href="edit.php?id=<?php echo $d['id_kecamatan']; ?>
-                            >EDIT</a>
-                            </td>
-                            <td><a class="btn btn-danger" href="href="edit.php?id=<?php echo $d['id_kecamatan']; ?>
-                            >HAPUS</a>
-                            </td>
-                        </tr>
-			<?php }	?> -->
+                       
                         
 
                      </table>
@@ -225,7 +215,7 @@
             <div class="card-header">
                 <h3 class="card-title">
                   <i class="fas fa-chart-pie mr-1"></i>
-                  Kelola Data
+                  Data Jarak
                 </h3>
               </div>
             <div class="card-body">
@@ -260,7 +250,7 @@
                             >HAPUS</a>
                             </td>
                         </tr>
-			<?php }	?>
+      <?php } ?>
 
                      </table>
                       <!-- <canvas id="revenue-chart-canvas" height="300" style="height: 300px;"></canvas> -->
