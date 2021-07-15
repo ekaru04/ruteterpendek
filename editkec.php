@@ -152,7 +152,7 @@
               		<div class="card-body">
                 		<div class="tab-content p-0 ">
 
-	                  			<?php 
+	                <?php 
 									include "connection.php";
 									$sql = mysqli_query($conn, "select * from kecamatan where id_kecamatan='$_GET[kode]'");
 									$data = mysqli_fetch_array($sql);
