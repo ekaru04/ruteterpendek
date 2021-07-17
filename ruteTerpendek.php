@@ -214,12 +214,38 @@
                   }else {
                     //var_dump($path);
                     echo implode(' -> ', $path);
+                    echo "<br>";
+                    $arrLength = count($path);
+                    $totaljarak = 0;
+
+                      for ($i = 0; $i < $arrLength; $i++) {
+                        if ($i!=$arrLength-1) {
+                        $awal = $path[$i];
+                        $tujuan = $path[$i+1];
+
+                        $jarakquery = "SELECT * FROM jarak WHERE kec_awal = '$awal' AND kec_tujuan = '$tujuan'";
+                        $jarak =  mysqli_query($conn, $jarakquery);
+                        $hasil = mysqli_num_rows($jarak);
+
+                        if ($hasil==0) {
+                          $jarakquery = "SELECT * FROM jarak WHERE kec_awal = '$tujuan' AND kec_tujuan = '$awal'";
+                          $jarak =  mysqli_query($conn, $jarakquery);
+                        }
+                        while($j = mysqli_fetch_array($jarak))
+                        {
+                          $totaljarak = $totaljarak+$j['jarak'];
+                        }
+
+                      }
+                    }
+                    $kmjarak = $totaljarak/1000;
+                    echo "Jarak yang ditempuh adalah <b>".$totaljarak." m</b> atau <b>".$kmjarak." km</b>";
                   }
                   ?>
                 </div>
               </div>
               <?php
-            }
+            } 
             ?>
 
           </div>
