@@ -149,7 +149,7 @@
                           <th class="text-center">Nomor</th>
                           <th class="text-center">Nama Kecamatan</th>
                           <th colspan="2" class="text-center">Aksi</th>
-                          <th class="text-center">Kode Pos</th>
+                          
                         </tr>
 
                         <?php 
