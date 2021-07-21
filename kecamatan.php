@@ -137,7 +137,7 @@
             <div class="card-header">
                 <h3 class="card-title">
                   <i class="fas fa-chart-pie mr-1"></i>
-                  Kelola Data
+                  List Kecamatan
                 </h3>
               </div>
             <div class="card-body">
@@ -147,9 +147,7 @@
                        style="position: relative; ">
                      <table class="table table-responsive">
                         <tr>
-                          <th class="text-center">Nomor</th>
                           <th class="text-center">Nama Kecamatan</th>
-                          <th class="text-center">Kode Pos</th>
                         </tr>
                         <?php
                                      
@@ -158,7 +156,7 @@
                             while($d = mysqli_fetch_assoc($data)){
                         ?>
                         <tr>
-                            <td><?php echo $no++; ?></td>
+                            <!-- <td><?php echo $no++; ?></td> -->
                             <td><?php echo $d['nama_kecamatan']; ?></td>
                         </tr>
 			<?php }	?>
@@ -181,7 +179,7 @@
             <div class="card-header">
                 <h3 class="card-title">
                   <i class="fas fa-chart-pie mr-1"></i>
-                  Kelola Data
+                  Jarak antar Kecamatan
                 </h3>
               </div>
             <div class="card-body">
@@ -191,7 +189,7 @@
                        style="position: relative;">
                      <table class="table table-responsive">
                         <tr>
-                          <th class="text-center">Nomor</th>
+                          <!-- <th class="text-center">Nomor</th> -->
                           <th class="text-center">Kec. Awal</th>
                           <th class="text-center">Kec. Tujuan</th>
                           <th class="text-center">Jarak(meter)</th>
@@ -203,7 +201,7 @@
                         while($d = mysqli_fetch_assoc($data)){
                         ?>
                         <tr>
-                            <td><?php echo $no++; ?></td>
+                            <!-- <td><?php echo $no++; ?></td> -->
                             <td><?php echo $d['kec_awal']; ?></td>
                             <td><?php echo $d['kec_tujuan']; ?></td>
                             <td><?php echo $d['jarak']; ?></td>

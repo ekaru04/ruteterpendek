@@ -217,28 +217,24 @@
                           <th class="text-center">Kec. Awal</th>
                           <th class="text-center">Kec. Tujuan</th>
                           <th class="text-center">Jarak(meter)</th>
-                          <th class="text-center">Aksi</th>
+                          <th colspan="2" class="text-center">Aksi</th>
                         </tr>
                         <?php
                                   
                         $no = 1;
-                        $data =  mysqli_query($conn, "select * from jarak");
-                        while($d = mysqli_fetch_assoc($data)){
-                        ?>
-                        <tr>
-                            <td><?php echo $no++; ?></td>
-                            <td><?php echo $d['kec_awal']; ?></td>
-                            <td><?php echo $d['kec_tujuan']; ?></td>
-                            <td><?php echo $d['jarak']; ?></td>
-                            <td><a class="btn btn-success" href="edit.php?id=<?php echo $d['kode_jarak']; ?>"
-                            >EDIT</a>
-                            </td>
-                            <td>
-                              <a class="btn btn-danger" href="hapus.php?id=<?php echo $d['kode_jarak']; ?>"
-                            >HAPUS</a>
-                            </td>
-                        </tr>
-      <?php } ?>
+                        $datajarak =  mysqli_query($conn, "select * from jarak");
+                        while($jarakkec = mysqli_fetch_array($datajarak)){
+                        echo "
+                          <tr>
+                            <td class='text-center'>$no</td>
+                            <td class='text-center'>$jarakkec[kec_awal]</td>
+                            <td class='text-center'>$jarakkec[kec_tujuan]</td>
+                            <td class='text-center'>$jarakkec[jarak]</td>
+                            <td><a class='btn btn-success' href='editjarak.php?kode=$jarakkec[kode_jarak]'>Edit</a></td>
+                            <td><a class='btn btn-danger' href='?kode=$jarakkec[kode_jarak]'>Hapus</a></td>
+                          </tr>";
+                          $no++;
+                        } ?>
 
                      </table>
                       <!-- <canvas id="revenue-chart-canvas" height="300" style="height: 300px;"></canvas> -->
