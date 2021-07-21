@@ -1,6 +1,6 @@
 <?php
 	session_start();
 	session_destroy();
-	header("location:./?pesan=logout")
+	header("location:ruteTerpendek.php?pesan=logout")
 
 ?>

@@ -29,12 +29,14 @@
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
-<?php
+
+  <?php
   session_start();
   if($_SESSION['status'] != "login"){
-    header("location:kelolaKec.php");
+    header("location:tambahkec.php");
   }
 ?>
+
 <div class="wrapper">
 
   <!-- Navbar -->
@@ -52,8 +54,7 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="./ruteTerpendek.php" class="brand-link">
-      <img src="dist/img/loc.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-           style="opacity: .8">
+      <img src="dist/img/loc.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">Rute Terpendek</span>
     </a>
 
@@ -136,111 +137,31 @@
     <section class="content">
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
-        <div class="row">
-            <div class="col-lg-6">
             <div class="card">
             <div class="card-header">
                 <h3 class="card-title">
                   <i class="fas fa-chart-pie mr-1"></i>
-                  Data Kecamatan
+                  Kelola Data
                 </h3>
               </div>
             <div class="card-body">
                 <div class="tab-content p-0 ">
                   <!-- Morris chart - Sales -->
-                  <div class=" active" id=""
+                  <div class="chart tab-pane active" id=""
                        style="position: relative; ">
-                     <table class="table table-responsive">
-                        <tr>
-                          <th class="text-center">Nomor</th>
-                          <th class="text-center">Nama Kecamatan</th>
-                          <th colspan="2" class="text-center">Aksi</th>
-                          
-                        </tr>
+                       <form action="tambah_aksi_kec.php" method="POST" enctype="multipart/form-data">
+                      <div class="">
+                      <div class="form-group col-6 col-sm-6">
+                        <label for="kec_awal">Kecamatan Awal</label>
+                          <input type="hidden" name="id_kecamatan" value="">
+                          <input class="form-control" type="text" name="nama_kecamatan" value=""  placeholder="Masukan Nama Kecamatan">
+                      </div>
 
-                        <?php 
-                        include "connection.php";
-                        $no=1;
-                        $ambildata = mysqli_query($conn, "select * from kecamatan");
-                        while ($tampil = mysqli_fetch_array($ambildata)){
-                          echo "
-                          <tr>
-                            <td>$no</td>
-                            <td>$tampil[nama_kecamatan]</td>
-                            <td><a class='btn btn-success' href='editkec.php?kode=$tampil[id_kecamatan]'>Edit</a></td>
-                            <td><a class='btn btn-danger' href='?kode=$tampil[id_kecamatan]'>Hapus</a></td>
-                          </tr>";
-                          $no++;
-                        }
-                        ?>
-
-                       
-                        
-
-                     </table>
-
-                     <?php  
-                     if(isset($_GET['kode'])){
-                      mysqli_query($conn, "delete from kecamatan where id_kecamatan='$_GET[kode]'");
-                      echo "<meta http-equiv=refresh content=0.1;URL='kelolaKec.php'>";
-
-                      //echo "Data telah terhapus";
-                     }
-                     ?>
-
-                   </div>
-                   
-
-
-                    <!-- <canvas id="sales-chart-canvas" height="300" style="height: 300px;"></canvas> -->                         
-                  </div>  
-                </div>
-                </div>
-              </div>
-
-              <div class="col-lg-6">
-            <div class="card">
-            <div class="card-header">
-                <h3 class="card-title">
-                  <i class="fas fa-chart-pie mr-1"></i>
-                  Data Jarak
-                </h3>
-              </div>
-            <div class="card-body">
-                <div class="tab-content p-0 ">
-                  <!-- Morris chart - Sales -->
-                  <div class=" active" id=""
-                       style="position: relative;">
-                     <table class="table table-responsive">
-                        <tr>
-                          <th class="text-center">Nomor</th>
-                          <th class="text-center">Kec. Awal</th>
-                          <th class="text-center">Kec. Tujuan</th>
-                          <th class="text-center">Jarak(meter)</th>
-                          <th class="text-center">Aksi</th>
-                        </tr>
-                        <?php
-                                  
-                        $no = 1;
-                        $data =  mysqli_query($conn, "select * from jarak");
-                        while($d = mysqli_fetch_assoc($data)){
-                        ?>
-                        <tr>
-                            <td><?php echo $no++; ?></td>
-                            <td><?php echo $d['kec_awal']; ?></td>
-                            <td><?php echo $d['kec_tujuan']; ?></td>
-                            <td><?php echo $d['jarak']; ?></td>
-                            <td><a class="btn btn-success" href="edit.php?id=<?php echo $d['kode_jarak']; ?>"
-                            >EDIT</a>
-                            </td>
-                            <td>
-                              <a class="btn btn-danger" href="hapus.php?id=<?php echo $d['kode_jarak']; ?>"
-                            >HAPUS</a>
-                            </td>
-                        </tr>
-      <?php } ?>
-
-                     </table>
+                      <div>
+                        <button type="submit" name="tambah" class="btn btn-primary" data-toggle="modal" data-target=".simpan-modal-sm"><i class="fa fa-save"></i>Tambah Kecamatan</button>
+                      </div>
+                      </div>
+                    </form>
                       <!-- <canvas id="revenue-chart-canvas" height="300" style="height: 300px;"></canvas> -->
                    </div>
                    
@@ -249,8 +170,8 @@
                     <!-- <canvas id="sales-chart-canvas" height="300" style="height: 300px;"></canvas> -->                         
                   </div>  
                 </div>
-                </div>
-              </div>
+
+              
           
           <!-- ./col -->
 
