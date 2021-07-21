@@ -237,6 +237,14 @@
                         } ?>
 
                      </table>
+                     <?php  
+                     if(isset($_GET['kode'])){
+                      mysqli_query($conn, "delete from jarak where kode_jarak='$_GET[kode]'");
+                      echo "<meta http-equiv=refresh content=0.1;URL='kelolaKec.php'>";
+
+                      //echo "Data telah terhapus";
+                     }
+                     ?>
                       <!-- <canvas id="revenue-chart-canvas" height="300" style="height: 300px;"></canvas> -->
                    </div>
                    
