@@ -156,7 +156,7 @@
                             while($d = mysqli_fetch_assoc($data)){
                         ?>
                         <tr>
-                            <!-- <td><?php echo $no++; ?></td> -->
+                            <td><?php echo $no++; ?></td>
                             <td><?php echo $d['nama_kecamatan']; ?></td>
                         </tr>
 			<?php }	?>

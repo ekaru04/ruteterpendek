@@ -140,7 +140,7 @@
             <div class="card-header">
                 <h3 class="card-title">
                   <i class="fas fa-chart-pie mr-1"></i>
-                  Kelola Data
+                  Tambah Data Jarak
                 </h3>
               </div>
             <div class="card-body">
@@ -160,7 +160,7 @@
                       </div>
 
                       <div class="form-group col-6 col-sm-6">
-                      <label for="jarak">Jarak (Satuan Meter)</label>
+                      <label for="jarak">Jarak antar Kecamatan (Satuan Meter)</label>
                           <input class="form-control" type="number" name="jarak" value="" placeholder="Masukan Jarak">
                       </div>
 

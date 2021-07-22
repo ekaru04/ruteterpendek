@@ -141,7 +141,7 @@
             <div class="card-header">
                 <h3 class="card-title">
                   <i class="fas fa-chart-pie mr-1"></i>
-                  Kelola Data
+                  Tambah Kecamatan
                 </h3>
               </div>
             <div class="card-body">
@@ -152,7 +152,7 @@
                        <form action="tambah_aksi_kec.php" method="POST" enctype="multipart/form-data">
                       <div class="">
                       <div class="form-group col-6 col-sm-6">
-                        <label for="kec_awal">Kecamatan Awal</label>
+                        <label for="kec_awal">Nama Kecamatan</label>
                           <input type="hidden" name="id_kecamatan" value="">
                           <input class="form-control" type="text" name="nama_kecamatan" value=""  placeholder="Masukan Nama Kecamatan">
                       </div>
